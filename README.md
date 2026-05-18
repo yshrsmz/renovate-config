@@ -70,6 +70,28 @@ Go modules の minor/patch 更新を1つの PR にまとめ、`go mod tidy` を�
 "extends": ["github>yshrsmz/renovate-config:gomod"]
 ```
 
+### `kotlin`
+
+Kotlin / KSP の更新を `Kotlin` グループにまとめ、`semanticCommitType` を `fix` に設定する。Android 以外の Kotlin プロジェクト（Kotlin Multiplatform、Kotlin/JVM 単体など）でも利用可能。
+
+```json
+"extends": ["github>yshrsmz/renovate-config:kotlin"]
+```
+
+### `android`
+
+Android プロジェクト固有のグルーピングルール。
+
+- `androidx.test` 系をまとめる
+- `oss-licenses` 系をまとめ、`semanticCommitType` を `fix` に設定
+- `roborazzi` と `ComposablePreviewScanner`（Compose スクリーンショットテスト）をまとめる
+
+```json
+"extends": ["github>yshrsmz/renovate-config:android"]
+```
+
+`kotlin` プリセットは含まないため、Android プロジェクトでは両方を並べて指定する。
+
 ### `dockerfile`
 
 Dockerfile / docker-compose の更新をグルーピングし、SHA ピンを有効化する。
@@ -114,6 +136,20 @@ Dockerfile / docker-compose の更新をグルーピングし、SHA ピンを有
     "github>yshrsmz/renovate-config",
     "github>yshrsmz/renovate-config:github-actions",
     "github>yshrsmz/renovate-config:npm"
+  ]
+}
+```
+
+### Android / Kotlin プロジェクト
+
+```json
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>yshrsmz/renovate-config",
+    "github>yshrsmz/renovate-config:github-actions",
+    "github>yshrsmz/renovate-config:kotlin",
+    "github>yshrsmz/renovate-config:android"
   ]
 }
 ```

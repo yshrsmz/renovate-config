@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Android プロジェクト固有 (androidx.test, oss-licenses, roborazzi/ComposablePreviewScanner) のグルーピング",
+  "packageRules": [
+    {
+      "description": "androidx.test を 1 つの PR にまとめる",
+      "matchPackageNames": [
+        "/^androidx\\.test:/"
+      ],
+      "groupName": "androidx.test"
+    },
+    {
+      "description": "oss-licenses 関連 libs を 1 つの PR にまとめ、bugfix 扱いに",
+      "matchPackageNames": [
+        "/oss-licenses/"
+      ],
+      "groupName": "oss-licenses-libs",
+      "semanticCommitType": "fix"
+    },
+    {
+      "description": "roborazzi と ComposablePreviewScanner をまとめる",
+      "matchPackageNames": [
+        "/^io\\.github\\.takahirom\\.roborazzi:/",
+        "/^io\\.github\\.sergio-sastre\\.ComposablePreviewScanner:/"
+      ],
+      "groupName": "roborazzi"
+    }
+  ]
+}
