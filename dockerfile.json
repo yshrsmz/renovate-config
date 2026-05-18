@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Dockerfile / docker-compose の管理ルール",
+  "extends": ["docker:pinDigests"],
+  "packageRules": [
+    {
+      "description": "Dockerfile の minor/patch 更新をグループ化",
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "Docker images"
+    }
+  ]
+}
