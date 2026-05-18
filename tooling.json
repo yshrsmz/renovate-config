@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "開発ツール (aqua, mise) の管理ルール",
+  "extends": ["github>aquaproj/aqua-renovate-config#2.8.0"],
+  "packageRules": [
+    {
+      "description": "mise の依存更新をグループ化",
+      "matchManagers": ["mise"],
+      "groupName": "mise dependencies"
+    },
+    {
+      "description": "aqua-registry の更新頻度を隔週に抑制",
+      "matchPackageNames": ["aquaproj/aqua-registry"],
+      "schedule": ["every 2 weeks on Monday after 09:00 before 10:00"]
+    }
+  ]
+}

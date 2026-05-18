@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "GitHub Actions グルーピングルールおよび SHA ピン設定",
+  "extends": ["helpers:pinGitHubActionDigests"],
+  "packageRules": [
+    {
+      "description": "GitHub Actions の minor/patch 更新をグループ化",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "GitHub Actions"
+    }
+  ]
+}

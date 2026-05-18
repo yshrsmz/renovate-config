@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "yshrsmz 個人プロジェクト標準の Renovate プリセット",
+  "extends": [
+    "config:best-practices",
+    "github>yshrsmz/renovate-config:vulnerability-alerts",
+    ":maintainLockFilesWeekly"
+  ],
+  "timezone": "Asia/Tokyo",
+  "schedule": ["* 9-12 * * 1"],
+  "semanticCommits": "enabled",
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
+  "minimumReleaseAge": "2 weeks",
+  "prCreation": "not-pending",
+  "internalChecksFilter": "strict",
+  "prHourlyLimit": 5
+}

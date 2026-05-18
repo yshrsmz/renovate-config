@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "npm 依存関係のグルーピングルールおよび pin 設定",
+  "extends": [":pinDependencies", ":pinDevDependencies"],
+  "packageRules": [
+    {
+      "description": "npm の minor/patch 更新をグループ化",
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "npm dependencies"
+    }
+  ]
+}
