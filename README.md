@@ -56,7 +56,13 @@ GitHub Actions の更新をグルーピングし、SHA ピンを有効化する�
 
 ### `npm`
 
-npm の minor/patch 更新を1つの PR にまとめる。
+npm パッケージの更新を以下のグループに分けて PR を出す。
+
+| グループ | 対象 | `semanticCommitType` |
+|---|---|---|
+| `npm dependencies` | `dependencies` の minor/patch/pin/digest | `fix` → `fix(deps): ...` |
+| `npm devDependencies` | `devDependencies` の minor/patch/pin/digest | `chore` → `chore(deps): ...` |
+| `vitejs` | `vite` / `@vitejs/*` (後勝ちで上記から抜き出す) | `chore` → `chore(deps): ...` |
 
 ```json
 "extends": ["github>yshrsmz/renovate-config:npm"]

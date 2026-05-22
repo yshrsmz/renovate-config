@@ -4,10 +4,26 @@
   "extends": [":pinDependencies", ":pinDevDependencies"],
   "packageRules": [
     {
-      "description": "npm の minor/patch 更新をグループ化",
+      "description": "dependencies の更新は fix(deps) として 1 PR にまとめる",
       "matchManagers": ["npm"],
+      "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "groupName": "npm dependencies"
+      "groupName": "npm dependencies",
+      "semanticCommitType": "fix"
+    },
+    {
+      "description": "devDependencies の更新は chore(deps) として 1 PR にまとめる",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "npm devDependencies",
+      "semanticCommitType": "chore"
+    },
+    {
+      "description": "vite / @vitejs/* は個別グループとして分離 (chore 扱い)",
+      "matchPackageNames": ["vite", "@vitejs{/,}**"],
+      "groupName": "vitejs",
+      "semanticCommitType": "chore"
     }
   ]
 }
