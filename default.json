@@ -6,6 +6,7 @@
     "github>yshrsmz/renovate-config:vulnerability-alerts",
     ":maintainLockFilesWeekly"
   ],
+  "ignorePresets": ["security:minimumReleaseAgeNpm"],
   "timezone": "Asia/Tokyo",
   "schedule": ["* * * * 1"],
   "semanticCommits": "enabled",
@@ -14,5 +15,12 @@
   "minimumReleaseAge": "2 weeks",
   "prCreation": "not-pending",
   "internalChecksFilter": "strict",
-  "prHourlyLimit": 5
+  "prHourlyLimit": 5,
+  "packageRules": [
+    {
+      "description": "lockFileMaintenance はパッケージマネージャ(pnpm 等)が lock を再解決するため Renovate 側の minimumReleaseAge を適用しない。age ガードはパッケージマネージャ(pnpm-workspace.yaml の minimumReleaseAge 等)が resolution 時に担保する。これを免除しないと renovate/stability-days が永久に pending となり lockFileMaintenance PR が merge できなくなる。",
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "minimumReleaseAge": null
+    }
+  ]
 }
