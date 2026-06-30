@@ -8,7 +8,7 @@
   ],
   "ignorePresets": ["security:minimumReleaseAgeNpm"],
   "timezone": "Asia/Tokyo",
-  "schedule": ["* * * * 1"],
+  "schedule": ["* * * * 1,4"],
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "labels": ["dependencies"],
