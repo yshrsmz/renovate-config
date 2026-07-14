@@ -13,7 +13,7 @@
   "dependencyDashboard": true,
   "labels": ["dependencies"],
   "minimumReleaseAge": "2 weeks",
-  "prCreation": "not-pending",
+  "prCreation": "immediate",
   "internalChecksFilter": "strict",
   "prHourlyLimit": 5,
   "packageRules": [
