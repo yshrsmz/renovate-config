@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Kotlin / KSP の更新をグループ化し、semanticCommitType を fix に設定",
+  "description": "Kotlin / KSP の更新をグループ化し、JDK ツールチェーンの stability check を調整",
   "packageRules": [
     {
       "description": "Kotlin と KSP の更新を 1 つの PR にまとめる",
@@ -11,6 +11,11 @@
       ],
       "groupName": "Kotlin",
       "semanticCommitType": "fix"
+    },
+    {
+      "description": "java-version datasource は releaseTimestamp を返さない (schema が semver のみ) ため、minimumReleaseAgeBehaviour の既定値 timestamp-required では age を評価できず常に pending 扱いになる。internalChecksFilter:strict と重なると renovate/stability-days が永久 pending となり JDK の更新 PR が作られない。timestamp が取得できない場合のみ通す設定にして、将来 datasource が releaseTimestamp を返すようになれば age ガードが自動的に復活するようにする。",
+      "matchDatasources": ["java-version"],
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
     }
   ]
 }
