@@ -80,6 +80,8 @@ Go modules の minor/patch 更新を1つの PR にまとめ、`go mod tidy` を�
 
 Kotlin / KSP の更新を `Kotlin` グループにまとめ、`semanticCommitType` を `fix` に設定する。Android 以外の Kotlin プロジェクト（Kotlin Multiplatform、Kotlin/JVM 単体など）でも利用可能。
 
+あわせて `java-version` datasource（mise / asdf の JDK 指定）に `minimumReleaseAgeBehaviour: "timestamp-optional"` を適用する。この datasource は `releaseTimestamp` を返さないため、既定の `timestamp-required` では `minimumReleaseAge` を評価できず常に pending 扱いとなり、`internalChecksFilter: strict` と重なると JDK の更新 PR が作られなくなる。
+
 ```json
 "extends": ["github>yshrsmz/renovate-config:kotlin"]
 ```
