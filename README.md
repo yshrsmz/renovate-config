@@ -46,6 +46,19 @@ yshrsmz 個人プロジェクト向けの Renovate shareable config presets を�
 
 > **Note:** 各設定値の SoT は `default.json` です。README の値と差異がある場合は `default.json` を優先してください。
 
+#### timestamp を持たない更新の stability check
+
+`minimumReleaseAge` は `releaseTimestamp` を持つ更新にしか age を評価できない。timestamp を返さない更新種別は、既定の `minimumReleaseAgeBehaviour: "timestamp-required"` のもとで「age 未達」として扱われ、`renovate/stability-days` が永久に pending になる。`internalChecksFilter: strict` と重なると PR や branch そのものが作られず、`prConcurrentLimit` を設定したリポジトリでは pending の PR が枠を占有して後続の更新まで滞留する。
+
+default プリセットでは 2 つの更新種別を免除している。
+
+| 更新種別 | 設定 | 理由 |
+|---|---|---|
+| `lockFileMaintenance` | `minimumReleaseAge: null` | lock の再解決はパッケージマネージャが行うため、age ガードは `pnpm-workspace.yaml` の `minimumReleaseAge` 等が resolution 時に担保する |
+| `digest` / `pinDigest` | `minimumReleaseAgeBehaviour: "timestamp-optional"` | digest 更新に `releaseTimestamp` が渡らない（[renovatebot/renovate#45236](https://github.com/renovatebot/renovate/issues/45236)）。timestamp が取得できない場合のみ通すため、datasource が timestamp を返すようになれば age ガードは自動的に復活する |
+
+timestamp を持つ通常の依存更新には `minimumReleaseAge: 2 weeks` がそのまま適用される。
+
 ### `github-actions`
 
 GitHub Actions の更新をグルーピングし、SHA ピンを有効化する。
