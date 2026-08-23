@@ -21,6 +21,11 @@
       "description": "lockFileMaintenance はパッケージマネージャ(pnpm 等)が lock を再解決するため Renovate 側の minimumReleaseAge を適用しない。age ガードはパッケージマネージャ(pnpm-workspace.yaml の minimumReleaseAge 等)が resolution 時に担保する。これを免除しないと renovate/stability-days が永久に pending となり lockFileMaintenance PR が merge できなくなる。",
       "matchUpdateTypes": ["lockFileMaintenance"],
       "minimumReleaseAge": null
+    },
+    {
+      "description": "digest / pinDigest 更新は releaseTimestamp を持たないため、minimumReleaseAgeBehaviour の既定値 timestamp-required では age を評価できず renovate/stability-days が永久に pending となる (renovatebot/renovate#45236)。lookup stage は age 充足として branch と PR を作る一方、branch stage の stability check は timestamp 不在を理由に pending を出し続けるという不整合。internalChecksFilter:strict や prConcurrentLimit と重なると後続の更新まで滞留する。timestamp が取得できない場合のみ通す設定にして、将来 datasource が releaseTimestamp を返すようになれば age ガードが自動的に復活するようにする。",
+      "matchUpdateTypes": ["digest", "pinDigest"],
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
     }
   ]
 }
