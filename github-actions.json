@@ -4,10 +4,11 @@
   "extends": ["helpers:pinGitHubActionDigests"],
   "packageRules": [
     {
-      "description": "GitHub Actions の minor/patch 更新をグループ化",
+      "description": "GitHub Actions の minor/patch 更新をグループ化し、グループは毎月 1 日にだけ作る。schedule が無いと新しい action がリリースされるたびに同じブランチ名で PR が作り直され、そのたびに Android の Gradle フル CI が走る。schedule:monthly は 1 日の 0-3 時だけの 4 時間窓なので、スキャンが外れて 1 か月待つのを避けるため終日に広げている。",
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "groupName": "GitHub Actions"
+      "groupName": "GitHub Actions",
+      "schedule": ["* * 1 * *"]
     }
   ]
 }
