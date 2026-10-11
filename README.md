@@ -40,7 +40,7 @@ yshrsmz 個人プロジェクト向けの Renovate shareable config presets を�
 | dependencyDashboard | true |
 | labels | `dependencies` |
 | minimumReleaseAge | 7 days |
-| prCreation | not-pending |
+| prCreation | immediate |
 | internalChecksFilter | strict |
 | prHourlyLimit | 5 |
 
