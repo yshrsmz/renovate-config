@@ -12,7 +12,7 @@
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "labels": ["dependencies"],
-  "minimumReleaseAge": "2 weeks",
+  "minimumReleaseAge": "7 days",
   "prCreation": "immediate",
   "internalChecksFilter": "strict",
   "prHourlyLimit": 5,

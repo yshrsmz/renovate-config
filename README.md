@@ -39,7 +39,7 @@ yshrsmz 個人プロジェクト向けの Renovate shareable config presets を�
 | semanticCommits | enabled |
 | dependencyDashboard | true |
 | labels | `dependencies` |
-| minimumReleaseAge | 2 weeks |
+| minimumReleaseAge | 7 days |
 | prCreation | not-pending |
 | internalChecksFilter | strict |
 | prHourlyLimit | 5 |
@@ -57,7 +57,7 @@ default プリセットでは 2 つの更新種別を免除している。
 | `lockFileMaintenance` | `minimumReleaseAge: null` | lock の再解決はパッケージマネージャが行うため、age ガードは `pnpm-workspace.yaml` の `minimumReleaseAge` 等が resolution 時に担保する |
 | `digest` / `pinDigest` | `minimumReleaseAgeBehaviour: "timestamp-optional"` | digest 更新に `releaseTimestamp` が渡らない（[renovatebot/renovate#45236](https://github.com/renovatebot/renovate/issues/45236)）。timestamp が取得できない場合のみ通すため、datasource が timestamp を返すようになれば age ガードは自動的に復活する |
 
-timestamp を持つ通常の依存更新には `minimumReleaseAge: 2 weeks` がそのまま適用される。
+timestamp を持つ通常の依存更新には `minimumReleaseAge: 7 days` がそのまま適用される。
 
 ### `github-actions`
 
